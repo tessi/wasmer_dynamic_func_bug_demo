@@ -20,6 +20,8 @@ fn main() {
     let mut import_object = generate_import_object(vec![], vec![], vec![], vec![]);
 
     // the following line triggers the bug. When overwriting "get_random" with a dynamic func,
+    // the errors surface. When inserting the same function with another name in line 16 or commenting
+    // out the following line, the program does *not* trigger the bug.
     import_object.extend(import_object_overwrites);
 
     let wasm_bytes = include_bytes!("wasi_example.wasm");
